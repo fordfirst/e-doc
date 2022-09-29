@@ -1,0 +1,159 @@
+<div class="content-header" style="background-color: #f9f9f9;">
+    <div class="container-fluid" style="padding:1% 2% 0% 2%;">
+
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h5>ข้อมูลค่านิยมในเครือ</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col p-3 mr-4" style="background-color:#ffffff ;border-radius: 15px;">
+                <h5>ตั้งค่าการโหวต</h5>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <label>จำกัดจำนวนการโหวต ต่อ 1 วัน</label>
+                        <input type="text" class="form-control" style="text-align: right;"
+                            [(ngModel)]="dataVoteSetting.voteQuota" placeholder="3 ครั้ง" />
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label>คะแนนที่ผู้โหวตจะได้รับ</label>
+                        <input type="text" class="form-control" style="text-align: right;"
+                            [(ngModel)]="dataVoteSetting.voterScore" p placeholder="3 คะแนน" />
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label>คะแนนที่ผู้ถูกโหวตจะได้รับ</label>
+                        <input type="text" class="form-control" style="text-align: right;"
+                            [(ngModel)]="dataVoteSetting.applicantScore" p placeholder="6 คะแนน" />
+                    </div>
+                    <div class="col-12 mb-5">
+                        <label>ระบุจำนวนคนเข้าร่วมกิจกรรม</label>
+                        <input type="text" class="form-control" style="text-align: right;"
+                            [(ngModel)]="dataVoteSetting.quotaLimit" p placeholder="2,000 คน" />
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-outline-success btn-block"
+                            (click)="getVoteSettingList()">ยกเลิก</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-success btn-block"
+                            (click)="editVoteSetting()">บันทึก</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 p-3" style="background-color:#ffffff ;border-radius: 15px;">
+                <h5>ประเภทค่านิยม</h5>
+                <span>คุณสามารถเลือกการ์ดค่านิยมเพื่อแก้ไขข้อมูล</span>
+                <div class="row mt-3">
+                    <div class="d-flex flex-wrap">
+                        <div class="box-vote-create text-center mr-2 mb-2 px-1" (click)="openCreateScoreVoteModal()">
+                            <i class="fas fa-plus fa-2x mb-2 p-2" style="border-radius: 7px;margin-top: 20px;"
+                                [ngStyle]="{color: '#00855A'}"></i><br>
+                            <span>สร้างประเภท<br>ค่านิยมใหม่</span>
+                        </div>
+                        <div *ngFor="let dataVoteType of dataVoteTypeList;index as i;"
+                            class="box-vote text-center mr-2 mb-2 px-1" (click)="openEditScoreVoteModal(dataVoteType)">
+                            <i class="fa-2x mb-2 p-2" [class]="dataVoteType.icon"
+                                style="border-radius: 7px;margin-top: 20px;"
+                                [ngStyle]="{background: dataVoteType.backgroundColor}"></i><br>
+                            <span class="text-one-line" [title]="dataVoteType.name">{{dataVoteType.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div bsModal #createScoreVoteModal="bs-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="row p-3" [formGroup]="formCreate"
+                    (ngSubmit)="formCreate.valid && submitCreateVote(); submittedCreate = true">
+                    <div class="col-12 mb-3">
+                        <h5 style="display: inline;">สร้างค่านิยม</h5>
+                        <i class="fas fa-times float-right mt-1" style="cursor: pointer;"
+                            (click)="createScoreVoteModal.hide();"></i><br>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label>ชื่อค่านิยม</label>
+                        <input type="text" class="form-control" formControlName="name"
+                            [class.is-invalid]="(formCreate.get('name').dirty || submittedCreate) && formCreate.get('name').invalid"
+                            required />
+                    </div>
+                    <div class="col-12"> <label>Icon</label></div>
+                    <div class="col-12 mb-3 d-flex flex-wrap justify-content-center">
+                        <i *ngFor="let dataIcon of dataIconList;index as i;"
+                            class="fa-2x mr-2 mb-2 d-flex justify-content-center align-items-center"
+                            style="cursor: pointer;border-radius: 7px;width: 56px;height: 56px;" [class]="dataIcon"
+                            (click)="formCreate.get('icon').setValue(dataIcon)"
+                            [ngStyle]="{backgroundColor: formCreate.get('backgroundColor').value, border: formCreate.get('icon').value==dataIcon ? '1px solid #000000' : 'none'}"></i>
+                    </div>
+                    <div class="col-12 mb-5">
+                        <label>เลือกสีพื้นหลัง</label><br>
+                        <span *ngFor="let dataIconColor of dataIconColorList;index as i;" class="dot mr-2"
+                            [ngStyle]="{backgroundColor: dataIconColor, border: formCreate.get('backgroundColor').value==dataIconColor ? '1px solid #000000' : 'none'}"
+                            (click)="formCreate.get('backgroundColor').setValue(dataIconColor)"></span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-outline-success btn-block"
+                            (click)="createScoreVoteModal.hide();">ยกเลิก</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="submit" class="btn btn-success btn-block">บันทึก</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #editScoreVoteModal="bs-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="row p-3" [formGroup]="formEdit"
+                    (ngSubmit)="formEdit.valid && submitEditVote(); submittedEdit = true">
+                    <div class="col-12 mb-3">
+                        <h5 style="display: inline;">แก้ไขค่านิยม</h5>
+                        <i class="fas fa-times float-right mt-1" style="cursor: pointer;"
+                            (click)="editScoreVoteModal.hide();"></i><br>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label>ชื่อค่านิยม</label>
+                        <input type="text" class="form-control" formControlName="name"
+                            [class.is-invalid]="(formEdit.get('name').dirty || submittedEdit) && formEdit.get('name').invalid"
+                            required />
+                    </div>
+                    <div class="col-12"> <label>Icon</label></div>
+                    <div class="col-12 mb-3 d-flex flex-wrap justify-content-center">
+                        <i *ngFor="let dataIcon of dataIconList;index as i;"
+                            class="fa-2x mr-2 mb-2 d-flex justify-content-center align-items-center"
+                            style="cursor: pointer;border-radius: 7px;width: 56px;height: 56px;" [class]="dataIcon"
+                            (click)="formEdit.get('icon').setValue(dataIcon)"
+                            [ngStyle]="{backgroundColor: formEdit.get('backgroundColor').value, border: formEdit.get('icon').value==dataIcon ? '1px solid #000000' : 'none'}"></i>
+                    </div>
+                    <div class="col-12 mb-5">
+                        <label>เลือกสีพื้นหลัง</label><br>
+                        <span *ngFor="let dataIconColor of dataIconColorList;index as i;" class="dot mr-2"
+                            [ngStyle]="{backgroundColor: dataIconColor, border: formEdit.get('backgroundColor').value==dataIconColor ? '1px solid #000000' : 'none'}"
+                            (click)="formEdit.get('backgroundColor').setValue(dataIconColor)"></span>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-success btn-block"
+                            (click)="editScoreVoteModal.hide();">ยกเลิก</button>
+                    </div>
+                    <div class="col-5 text-center">
+                        <button type="submit" class="btn btn-success btn-block">บันทึก</button>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-danger btn-block" (click)="deleteVoteType()">ลบ</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

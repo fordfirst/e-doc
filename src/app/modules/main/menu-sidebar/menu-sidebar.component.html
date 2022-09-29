@@ -1,0 +1,64 @@
+<!-- Brand Logo -->
+<!-- [routerLink]="['/']" -->
+<a class="brand-link logo-switch" style="border-bottom:0px;">
+    <img src="assets/img/CP-Group-logo 1.svg" alt="Logo" class="brand-image" style="opacity: .8" />
+    <span class="brand-text font-weight-light"><small>CP L.O.V.E.</small></span>
+</a>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
+                <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon far fa-chart-bar mr-2"></i>
+                    <p> Dashboard </p>
+                </a>
+            </li>
+            <li *ngIf="[1,2,3,4].indexOf(authService.getRole())!== -1" class="nav-item">
+                <a routerLink="/point-deal" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon far fa-gem mr-2"></i>
+                    <p> คะแนนและดีล </p>
+                </a>
+            </li>
+            <li *ngIf="[1,2,3,4].indexOf(authService.getRole())!== -1" class="nav-item">
+                <a routerLink="/campaign" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-fire-alt mr-2"></i>
+                    <p> แคมเปญ </p>
+                </a>
+            </li>
+            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
+                <a routerLink="/report" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon far fa-file-alt mr-2"></i>
+                    <p> รายงาน </p>
+                </a>
+            </li>
+            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
+                <a routerLink="/manage-point" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fab fa-product-hunt mr-2"></i>
+                    <p> อัพโหลดคะแนน </p>
+                </a>
+            </li>
+            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
+                <a routerLink="/employee" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-address-card mr-2"></i>
+                    <p> ข้อมูลพนักงาน </p>
+                </a>
+            </li>
+            <li *ngIf="[1].indexOf(authService.getRole())!== -1" class="nav-item">
+                <a routerLink="/setup" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-cog mr-2"></i>
+                    <p> ตั้งค่า </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:void(0)" (click)="logout()" class="nav-link">
+                    <i class="nav-icon fa fa-sign-out-alt mr-2"></i>
+                    <p>ออกจากระบบ</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>

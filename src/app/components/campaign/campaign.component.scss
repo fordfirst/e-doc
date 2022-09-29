@@ -1,0 +1,15 @@
+.trapezoid {
+	border-bottom: 50px solid #D2D2D2;
+	border-left: 0px solid transparent;
+	border-right: 35px solid transparent;
+    width: auto;
+    height: 0;
+    border-radius: 10px 0 0 0;
+}
+
+.mat-header-row {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+}

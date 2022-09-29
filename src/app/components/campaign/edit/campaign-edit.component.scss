@@ -1,0 +1,16 @@
+.content-campaign {
+    border: 1px solid #d9d9d9;
+    border-radius: 21px;
+    height: 200px;
+    cursor: not-allowed;
+}
+
+.is-invalid {
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+}
+
+.form-check-input:checked {
+    background-color: #00855a;
+    border-color: #00855a;
+}

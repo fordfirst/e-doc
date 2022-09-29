@@ -1,0 +1,19 @@
+.card {
+    box-shadow: none;
+}
+
+.is-invalid {
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+
+.example-radio-button {
+    margin: 5px;
+}

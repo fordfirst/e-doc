@@ -1,0 +1,24 @@
+.box-vote-create {
+    width: 100px;
+    height: 140px;
+    border: 1px solid #00855a;
+    border-radius: 35px;
+    cursor: pointer;
+    background: #e9f2ef;
+}
+
+.box-vote {
+    width: 100px;
+    height: 140px;
+    border: 1px solid #ededed;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.dot {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+  }

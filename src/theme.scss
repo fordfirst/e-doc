@@ -1,0 +1,22 @@
+@import '../node_modules/@angular/material/theming';
+@include mat-core();
+
+@font-face {
+    /* Safari, Android, iOS */
+    font-family: 'Prompt';
+    src: url(./assets/fonts/Prompt-Light.ttf) format('truetype');
+}
+
+$candy-app-primary: mat-palette($mat-green, 700);
+$candy-app-accent:  mat-palette($mat-green, 700);
+$candy-app-warn:    mat-palette($mat-red);
+$candy-app-theme: mat-light-theme((
+  color: (
+    primary: $candy-app-primary,
+    accent: $candy-app-accent,
+    warn: $candy-app-warn,  
+  )
+));
+
+@include angular-material-theme($candy-app-theme);
+

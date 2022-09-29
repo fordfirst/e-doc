@@ -1,0 +1,221 @@
+<div class="content-header" style="background-color: #f9f9f9;">
+    <div class="container-fluid" style="padding:1% 2% 0% 2%;">
+
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h5>รายงาน</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <i class="far fa-envelope fa-2x mb-4"
+                                    style="background-color: #82DBCE;border-radius: 19px; padding: 20px;"></i>
+                                <h5 class="mb-4">Point Transaction Report</h5>
+                                <span>
+                                    <small>คะแนนภายในระบบทั้งหมด ทั้งการรับเข้า,
+                                        <br>การจัดสรร และการใช้จ่ายคะแนน
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="col-12 text-center mb-4">
+                                <button type="button" class="btn btn-success" style="width: 188px;"
+                                    (click)="openModalPointTransactionReport()">ดาวน์โหลด</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <i class="far fa-address-book fa-2x mb-4"
+                                    style="background-color: #82DBCE;border-radius: 19px; padding: 20px;"></i>
+                                <h5 class="mb-4">Employee Activity & Enagegement</h5>
+                                <span>
+                                    <small>การมีส่วนร่วมของพนักงานภายในระบบ
+                                        <br>CP L.O.V.E Platform ทั้งหมด
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="col-12 text-center mb-4">
+                                <button type="button" class="btn btn-success" style="width: 188px;"
+                                    (click)="openModalEmployeeReport()">ดาวน์โหลด</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 text-center mb-4">
+                                <i class="far fa-address-book fa-2x mb-4"
+                                    style="background-color: #82DBCE;border-radius: 19px; padding: 20px;"></i>
+                                <h5 class="mb-4">Campaign & Activity Report</h5>
+                                <span>
+                                    <small>ความเคลื่อนไหวของคอนเท้นต์และกิจกรรม
+                                        <br>ต่างๆบนระบบ
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="col-12 text-center mb-4">
+                                <button type="button" class="btn btn-success" style="width: 188px;"
+                                    (click)="openModalCampaignReport()">ดาวน์โหลด</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div bsModal #exportPointReportModal="bs-modal" [config]="{backdrop: 'static',keyboard: false}" class="modal fade"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row p-3">
+                    <div class="col-12 mb-3">
+                        <h5 style="display: inline;">Export : Point Transaction Report</h5>
+                        <i class="fas fa-times float-right mt-1" style="cursor: pointer;"
+                            (click)="exportPointReportModal.hide();"></i>
+                    </div>
+                    <div class="col-12">
+                        <div class="card" style="border: 1.5px solid #DEE0E0;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span *ngFor="let item of selectMonthPoint;index as i;"
+                                            class="badge text-dark p-3 mr-2 mb-2" style="background-color: #EDEDED;">
+                                            {{month[item.month]}} {{item.year}}
+                                        </span>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr style="border: 1px solid #DEE0E0;">
+                                    </div>
+                                    <div class="col-12 frame" style="height: 300px;overflow: auto;">
+                                        <section class="example-section">
+                                            <p *ngFor="let data of momthList;index as i;">
+                                                <mat-checkbox (change)="selectMonthPointReport($event,data)">
+                                                    {{month[data.month]}} {{data.year}}</mat-checkbox>
+                                            </p>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-success btn-block" style="height: 45px;"
+                            (click)="downloadExcelPointReport()"
+                            [disabled]="selectMonthPoint.length<=0">ดาวน์โหลด</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #exporEmployeeReportModal="bs-modal" [config]="{backdrop: 'static',keyboard: false}" class="modal fade"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row p-3">
+                    <div class="col-12 mb-3">
+                        <h5 style="display: inline;">Export : Employee Activity & Enagegement</h5>
+                        <i class="fas fa-times float-right mt-1" style="cursor: pointer;"
+                            (click)="exporEmployeeReportModal.hide();"></i>
+                    </div>
+                    <div class="col-12">
+                        <div class="card" style="border: 1.5px solid #DEE0E0;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span *ngFor="let item of selectMonthPoint;index as i;"
+                                            class="badge text-dark p-3 mr-2 mb-2" style="background-color: #EDEDED;">
+                                            {{month[item.month]}} {{item.year}}
+                                        </span>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr style="border: 1px solid #DEE0E0;">
+                                    </div>
+                                    <div class="col-12 frame" style="height: 300px;overflow: auto;">
+                                        <section class="example-section">
+                                            <p *ngFor="let data of momthList;index as i;">
+                                                <mat-checkbox (change)="selectMonthPointReport($event,data)">
+                                                    {{month[data.month]}} {{data.year}}</mat-checkbox>
+                                            </p>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-success btn-block" style="height: 45px;"
+                            (click)="downloadExcelReportCustomer()"
+                            [disabled]="selectMonthPoint.length<=0">ดาวน์โหลด</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #exporCampaignReportModal="bs-modal" [config]="{backdrop: 'static',keyboard: false}" class="modal fade"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row p-3">
+                    <div class="col-12 mb-3">
+                        <h5 style="display: inline;">Export : Campaign & Activity Report</h5>
+                        <i class="fas fa-times float-right mt-1" style="cursor: pointer;"
+                            (click)="exporCampaignReportModal.hide();"></i>
+                    </div>
+                    <div class="col-12">
+                        <div class="card" style="border: 1.5px solid #DEE0E0;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span *ngFor="let item of selectMonthPoint;index as i;"
+                                            class="badge text-dark p-3 mr-2 mb-2" style="background-color: #EDEDED;">
+                                            {{month[item.month]}} {{item.year}}
+                                        </span>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr style="border: 1px solid #DEE0E0;">
+                                    </div>
+                                    <div class="col-12 frame" style="height: 300px;overflow: auto;">
+                                        <section class="example-section">
+                                            <p *ngFor="let data of momthList;index as i;">
+                                                <mat-checkbox (change)="selectMonthPointReport($event,data)">
+                                                    {{month[data.month]}} {{data.year}}</mat-checkbox>
+                                            </p>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-success btn-block" style="height: 45px;"
+                            (click)="downloadExcelReportCampaign()"
+                            [disabled]="selectMonthPoint.length<=0">ดาวน์โหลด</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

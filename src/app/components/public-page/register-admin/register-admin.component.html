@@ -1,0 +1,109 @@
+<div class="container-fluid vh-100"
+    style="background: url('assets/img/bg-auth.png') center no-repeat; background-size:cover; height: 200px;">
+    <div class="row">
+        <div class="col" style="margin: 30% 0% 0% 10%;">
+            <h1 class="text-primary">CP L.O.V.E. Platform</h1>
+            <h3>Management</h3>
+        </div>
+        <div class="col-6">
+            <div class="container">
+                <div style="max-width: 400px; margin: 5% 0% 0% 0%;">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mt-4">
+                                <div class="col-12 text-center">
+                                    <img class="img-fluid" style="width: 36%;height: auto;"
+                                        src="assets/img/cp_group_signin.jpg">
+                                </div>
+                                <form class="col-12" [formGroup]="form"
+                                    (ngSubmit)="form.valid && submitRegisterAdmin(); submitted = true">
+                                    <div class="row">
+                                        <div class="col-1"></div>
+                                        <div class="col-10">
+                                            <div class="row">
+                                                <div class="col-12 form-group mt-3 text-center">
+                                                    <h6>กรอกรายละเอียดยืนยันผู้ช่วย</h6>
+                                                    <input type="text" class="form-control" formControlName="email"
+                                                        readonly>
+                                                </div>
+                                                <div class="col-12 form-group mb-0">
+                                                    <label>รหัสผ่าน</label>
+                                                    <div class="input-group mb-3">
+                                                        <input [type]="isShowNewPassword ? 'text' : 'password'"
+                                                            class="form-control" formControlName="newPassword"
+                                                            [class.is-invalid]="(form.get('newPassword').dirty || submitted) && form.get('newPassword').invalid"
+                                                            placeholder="New Password" required>
+                                                        <div class="input-group-prepend">
+                                                            <a href="javascript:void(0)" class="input-group-text"
+                                                                (click)="isShowNewPassword = !isShowNewPassword"
+                                                                style="background: transparent">
+                                                                <i class="fa fa-eye-slash"
+                                                                    *ngIf="!isShowNewPassword"></i>
+                                                                <i class="fa fa-eye" *ngIf="isShowNewPassword"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 form-group mb-0">
+                                                    <label>ยืนยันรหัสผ่าน</label>
+                                                    <div class="input-group mb-3">
+                                                        <input [type]="isShowConfirmNewPassword ? 'text' : 'password'"
+                                                            class="form-control" formControlName="confirmNewPassword"
+                                                            [class.is-invalid]="(form.get('confirmNewPassword').dirty || submitted) && form.get('confirmNewPassword').invalid"
+                                                            placeholder="Confirm New Password" required>
+                                                        <div class="input-group-prepend">
+                                                            <a href="javascript:void(0)" class="input-group-text"
+                                                                (click)="isShowConfirmNewPassword = !isShowConfirmNewPassword"
+                                                                style="background: transparent">
+                                                                <i class="fa fa-eye-slash"
+                                                                    *ngIf="!isShowConfirmNewPassword"></i>
+                                                                <i class="fa fa-eye"
+                                                                    *ngIf="isShowConfirmNewPassword"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 form-group mb-0">
+                                                    <label>ชื่อ - สกุล</label>
+                                                    <input type="text" class="form-control mb-3" formControlName="name"
+                                                        [class.is-invalid]="(form.get('name').dirty || submitted) && form.get('name').invalid"
+                                                        placeholder="โปรดระบุ" required>
+                                                </div>
+                                                <div class="col-12 form-group mb-0">
+                                                    <label>บริษัท</label>
+                                                    <select class="form-control mb-3" formControlName="businessGroupId"
+                                                        [ngClass]="{'is-invalid':(form.get('businessGroupId').dirty || submitted) && form.get('businessGroupId').invalid}"
+                                                        required>
+                                                        <option [ngValue]="null" selected>-- เลือกบริษัท --</option>
+                                                        <option *ngFor="let businessGroup of businessGroupList;index as i;"
+                                                            [ngValue]="businessGroup.id">
+                                                            {{businessGroup.nameTh || '-'}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-12 form-group mb-0">
+                                                    <label>รหัสพนักงาน</label>
+                                                    <input type="number" class="form-control mb-3" formControlName="code"
+                                                        [class.is-invalid]="(form.get('code').dirty || submitted) && form.get('code').invalid"
+                                                        placeholder="โปรดระบุ" required>
+                                                </div>
+                                                <div class="col-12  form-group mt-3">
+                                                    <button type="submit" class="btn btn-success btn-block"
+                                                        style="height: 45px;">
+                                                        ยืนยัน
+                                                    </button>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-1"></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,332 @@
+<div class="content-header" style="background-color: #f9f9f9;">
+    <div class="container-fluid" style="padding:1% 2% 0% 2%;">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h5>แก้ไขดีล</h5>
+            </div>
+            <div class="col-6 mb-3 text-right">
+                <button type="button" class="btn btn-danger" style="width: 269px;" (click)="removeDealModal.show();">
+                    <i class="far fa-trash-alt"></i>
+                    ลบข้อมูล
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <h5>ข้อมูลสถานะดีล</h5>
+                            </div>
+                            <div class="col-3">
+                                <div class="info-box p-3">
+                                    <span class="info-box-icon" style="background-color: #E4FFDD;border-radius: 19px;">
+                                        <i class="far fa-envelope"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <div class="row ml-2">
+                                            <div class="col-12">
+                                                <h6 class="info-box-text">สถานะดีล</h6>
+                                                <button *ngIf="form.value.periodStatus===0" type="button"
+                                                    class="btn btn-outline-warning btn-sm">
+                                                    รอดำเนินการ
+                                                </button>
+                                                <button *ngIf="form.value.periodStatus===1" type="button"
+                                                    class="btn btn-outline-success btn-sm">
+                                                    ดำเนินการ
+                                                </button>
+                                                <button *ngIf="form.value.periodStatus===2" type="button"
+                                                    class="btn btn-outline-danger btn-sm">
+                                                    หมดอายุ
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="info-box p-3">
+                                    <span class="info-box-icon" style="background-color: #E4FFDD;border-radius: 19px;">
+                                        <i class="far fa-envelope"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <div class="row ml-2">
+                                            <div class="col-12">
+                                                <h6 class="info-box-text">สถานะ E-Voucher</h6>
+                                                <button *ngIf="form.value.isActivate" type="button"
+                                                    class="btn btn-outline-success btn-sm">
+                                                    Activate
+                                                </button>
+                                                <button *ngIf="!form.value.isActivate" type="button"
+                                                    class="btn btn-outline-secondary btn-sm">
+                                                    Inactive
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form class="row" [formGroup]="form" (ngSubmit)="form.valid && submitEditDeal(); submitted = true">
+            <div class="col-12 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6 p-3" style="border-right: 1px solid #DEE0E0;">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label>ชื่อ e-voucher</label>
+                                        <input type="text" class="form-control" formControlName="name"
+                                            [class.is-invalid]="(form.get('name').dirty || submitted) && form.get('name').invalid"
+                                            required />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label>สิทธิประโยชน์</label>
+                                        <textarea class="form-control" rows="4" formControlName="benefit"
+                                            [class.is-invalid]="(form.get('benefit').dirty || submitted) && form.get('benefit').invalid"
+                                            required></textarea>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label>เงื่อนไขการรับสิทธิ์</label>
+                                        <textarea class="form-control" rows="4" formControlName="conditionBenefit"
+                                            [class.is-invalid]="(form.get('conditionBenefit').dirty || submitted) && form.get('conditionBenefit').invalid"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 p-3">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label>ชื่อ e-voucher (EN)</label>
+                                        <input type="text" class="form-control" formControlName="nameEn"
+                                            [class.is-invalid]="(form.get('nameEn').dirty || submitted) && form.get('nameEn').invalid"
+                                            required />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label>สิทธิประโยชน์ (EN)</label>
+                                        <textarea class="form-control" rows="4" formControlName="benefitEn"
+                                            [class.is-invalid]="(form.get('benefitEn').dirty || submitted) && form.get('benefitEn').invalid"
+                                            required></textarea>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label>เงื่อนไขการรับสิทธิ์ (EN)</label>
+                                        <textarea class="form-control" rows="4" formControlName="conditionBenefitEn"
+                                            [class.is-invalid]="(form.get('conditionBenefitEn').dirty || submitted) && form.get('conditionBenefitEn').invalid"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 mb-4">
+                <div class="card">
+                    <div class="card-body" style="min-height: 620px;">
+                        <div class="row p-3">
+                            <div class="col-12 m b-3">
+                                <label class="d-block">รูปภาพหน้าประกอบ (137 x 20 px)</label>
+                                <input type="file" name="file" #file (change)="onFileSelected(file)" hidden>
+                                <button *ngIf="!form.value.bannerImage" type="button" class="btn btn-success"
+                                    (click)="file.click()">
+                                    + อัพโหลดรูปภาพ
+                                </button>
+                                <div *ngIf="form.value.bannerImage" class="row">
+                                    <div class="col-5">
+                                        <img class="img-fluid" [src]="getBaseDirFilesServ(form.value.bannerImage)"
+                                            style="width: 190px;height: 100px;border-radius:15px;object-fit:contain;" />
+                                    </div>
+                                    <div class="col-7 p-0">
+                                        <i class="far fa-edit d-block pt-4 pb-4" style="cursor: pointer;"
+                                            (click)="file.click()"></i>
+                                        <i class="far fa-trash-alt d-block" style="cursor: pointer;"
+                                            (click)="onRemoveFile()"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label>เลือกกลุ่มธุรกิจ</label>
+                                <label class="text-success float-right"
+                                    style="cursor: pointer;text-decoration: underline;"
+                                    (click)="selectAllBusinessGroups()">
+                                    เลือกทั้งหมด
+                                </label>
+                                <ng-select class="mt-2" [items]="businessGroupList" [multiple]="true" bindLabel="nameTh"
+                                    [closeOnSelect]="false" formControlName="businessGroups"
+                                    [ngClass]="{'is-invalid':(form.get('businessGroups').dirty || submitted) && form.get('businessGroups').invalid}"
+                                    [readonly]="!isCanEditAll" required>
+                                </ng-select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label>เลือกแบรนด์</label>
+                                <select type="text" name="brandId" class="form-control"
+                                    [class.is-invalid]="(form.get('brandId').dirty || submitted) && form.get('brandId').invalid"
+                                    formControlName="brandId" [attr.disabled]="!isCanEditAll ? '' : null" required>
+                                    <option [ngValue]="null" selected disabled>เลือกแบรนด์</option>
+                                    <option [ngValue]="i.id" *ngFor="let i of brandList">
+                                        {{i.nameTh}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label>เลือกหมวด e-voucher</label>
+                                <select type="text" name="voucherCatalogId" class="form-control"
+                                    [class.is-invalid]="(form.get('voucherCatalogId').dirty || submitted) && form.get('voucherCatalogId').invalid"
+                                    formControlName="voucherCatalogId" [attr.disabled]="!isCanEditAll ? '' : null"
+                                    required>
+                                    <option [ngValue]="null" selected disabled>เลือกหมวด e-voucher</option>
+                                    <option [ngValue]="i.id" *ngFor="let i of voucherCatalogList">
+                                        {{i.nameTh}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label>จำนวนสิทธิ์ทั้งหมด</label>
+                                <input type="number" class="form-control" formControlName="quota"
+                                    style="text-align: right;" placeholder="10,000 สิทธิ์"
+                                    [class.is-invalid]="(form.get('quota').dirty || submitted) && form.get('quota').invalid"
+                                    required />
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label>มูลค่าของ e-voucher <br> <small>(จำนวนคะแนน ต่อ 1 การรับสิทธิ์)</small></label>
+                                <input type="number" class="form-control" formControlName="quotaPoint"
+                                    style="text-align: right;" placeholder="100 คะแนน"
+                                    [class.is-invalid]="(form.get('quotaPoint').dirty || submitted) && form.get('quotaPoint').invalid"
+                                    [readonly]="!isCanEditAll" required />
+                            </div>
+                            <div class="col-6 mb-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 mb-4">
+                <div class="card">
+                    <div class="card-body" style="height: 620px;">
+                        <div class="row p-3">
+                            <div class="col-12 mb-2">
+                                <h6>ตั้งค่าดีล</h6>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6>ช่วงเวลาของดีล</h6>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label>วันเริ่มต้นการรับสิทธิ์</label>
+                                <input bsDatepicker type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                    [bsConfig]="{dateInputFormat: 'DD/MM/YYYY', showWeekNumbers: false}"
+                                    [class.is-invalid]="(form.get('quotaStart').dirty || submitted) && form.get('quotaStart').invalid"
+                                    formControlName="quotaStart" [attr.disabled]="!isCanEditAll ? '' : null" required>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label>วันสิ้นสุดการรับสิทธิ์</label>
+                                <input bsDatepicker type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                    [bsConfig]="{dateInputFormat: 'DD/MM/YYYY', showWeekNumbers: false}"
+                                    [class.is-invalid]="(form.get('quotaEnd').dirty || submitted) && form.get('quotaEnd').invalid"
+                                    formControlName="quotaEnd" [attr.disabled]="!isCanEditAll ? '' : null" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h6>การแลกเพื่อรับสิทธิ์</h6>
+                                <mat-radio-group formControlName="isOnePermissionOnly" class="example-radio-group"
+                                    [disabled]="!isCanEditAll">
+                                    <mat-radio-button class="example-radio-button" [value]="true">
+                                        จำกัด 1 คน 1 สิทธิ์
+                                    </mat-radio-button>
+                                    <mat-radio-button class="example-radio-button" [value]="false">
+                                        ไม่จำกัดการแลก
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h6>จัดการดีล</h6>
+                                <mat-radio-group formControlName="isActivate" class="example-radio-group">
+                                    <mat-radio-button class="example-radio-button" [value]="true">
+                                        Activate
+                                    </mat-radio-button>
+                                    <mat-radio-button class="example-radio-button" [value]="false">
+                                        Inactivate
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 mb-4"></div>
+            <div class="col-6 mb-4">
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-outline-success btn-block"
+                            (click)="cancelEditModal.show();">ยกเลิก</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="submit" class="btn btn-success btn-block">บันทึก</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div bsModal #cancelEditModal="bs-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row p-3">
+                    <div class="col-12 mb-3">
+                        <h5 style="display: inline;">ยกเลิกการแก้ไข</h5>
+                        <i class="fas fa-times float-right mt-1" style="cursor: pointer;"
+                            (click)="cancelEditModal.hide();"></i><br>
+                        <h6><small>การแก้ไขยังไม่ได้ถูกบันทึก ต้องการออกจากหน้านี้หรือไม่</small></h6>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-outline-success btn-block"
+                            (click)="cancelEditModal.hide();">ยกเลิก</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-success btn-block" routerLink="/point-deal">ยืนยัน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #removeDealModal="bs-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row p-3">
+                    <div class="col-12 mb-3">
+                        <h5 style="display: inline;">ยืนยันการลบข้อมูล</h5>
+                        <i class="fas fa-times float-right mt-1" style="cursor: pointer;"
+                            (click)="removeDealModal.hide();"></i><br>
+                        <h6 class="pt-3">
+                            <small>
+                                ไม่สามารถเรียกข้อมูลที่ลบไปกลับมาได้ โปรดตรวจสอบข้อมูล
+                                ให้แน่ใจก่อนลบ
+                            </small>
+                        </h6>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-outline-success btn-block"
+                            (click)="removeDealModal.hide()">ยกเลิก</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button type="button" class="btn btn-success btn-block"
+                            (click)="submitDeleteDeal();">ยืนยัน</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

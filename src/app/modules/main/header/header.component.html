@@ -1,0 +1,22 @@
+<div class="navbar-nav" style="padding:1% 0% 0% 2%;">
+    <div *ngFor="let data of dataRouteNavbar;index as i;">
+        <h5 class="d-inline mr-2" style="cursor: pointer;"
+            (click)="redirectPageHeader(data.url)">
+            {{data.name}}
+        </h5>
+        <h5 *ngIf="dataRouteNavbar.length!==1 && dataRouteNavbar.length !== i+1" class="d-inline mr-2">></h5>
+    </div>
+</div>
+
+<div class="navbar-nav ml-auto bg-white" style="height:40px;">
+    <div>
+        <div class="row" style="line-height: 0.5">
+            <div class="col-12 text-right">
+                <h5>{{username}}</h5>
+            </div>
+            <div class="col-12 text-right">
+                <span style="font-size: small;">{{code}}</span>
+            </div>
+        </div>
+    </div>
+</div>
