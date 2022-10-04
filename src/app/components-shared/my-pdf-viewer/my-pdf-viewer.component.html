@@ -1,0 +1,18 @@
+<ngx-extended-pdf-viewer
+        [src]="pdfSrc"
+        [filenameForDownload]="fileNameDownload"
+        [useBrowserLocale]="true"
+        [textLayer]="true"
+        [handTool]="false"
+        [showHandToolButton]="true"
+        [showPresentationModeButton]="true"
+        [(page)]="page"
+        [(pageLabel)]="titleName"
+        [showBookmarkButton]="false"
+        [showOpenFileButton]="false"
+        (pageRendered)="pageRendered($event)"
+        (pagesLoaded)="pagesLoaded($event)"
+        (pdfLoaded)="pdfLoaded($event)"
+        height="100vh" style="position: relative">
+  <h2 style="position: absolute; top: 50%; left: 50; z-index: 999999">DECODING</h2>
+</ngx-extended-pdf-viewer>

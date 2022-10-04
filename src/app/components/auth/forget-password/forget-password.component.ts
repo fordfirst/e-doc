@@ -1,4 +1,3 @@
-import { AuthService } from '@/aurhService';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,7 +20,6 @@ export class ForgetPasswordComponent implements OnInit {
     });
 
     constructor(
-        private authSer: AuthService,
         private service: ForgetPasswordService,
         private router: Router,
         private spinner: NgxSpinnerService,

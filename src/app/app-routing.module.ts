@@ -1,75 +1,57 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from '@modules/main/main.component';
-import { BlankComponent } from '@pages/blank/blank.component';
-import { ProfileComponent } from '@pages/profile/profile.component';
-import { DashboardComponent } from '@pages/dashboard/dashboard.component';
-import { MainMenuComponent } from '@pages/main-menu/main-menu.component';
-import { SubMenuComponent } from '@pages/main-menu/sub-menu/sub-menu.component';
-import { GuardService } from './guard.service';
-import { GuardLoginService } from './guard-login.service';
-import { InvalidPermissionComponent } from '@components/invalid-permission/invalid-permission.component';
-import { PageNotFoundComponent } from '@components/page-not-found/page-not-found.component';
-import { Role } from './aurhService';
-
+import { AuthGuardService } from '@services/authGuard.service';
 
 const routes: Routes = [
     {
         path: '',
         component: MainComponent,
+        canActivate: [AuthGuardService],
         children: [
+            // {
+            //     path: '',
+            //     redirectTo: '/meeting-management',
+            //     pathMatch: "full"
+            // },
             {
-                path: '', redirectTo: '/auth/login', pathMatch: 'full'
-            }, 
-            {
-                path: 'point-deal', loadChildren: () => import('./components/point-deal/point-deal.module').then(mod => mod.PointDealModule),
-                canActivate: [GuardService],
-                data: { roles: [Role.SUPER_ADMIN, Role.ADMIN, Role.CONTENT_ADMIN, Role.VIEWER] }
-                /* SUPER_ADMIN=1 ADMIN=2 CONTENT_ADMIN=3 VIEWER=4 */
+                path: 'meeting-management',
+                loadChildren: () => import('./components/meeting-management/meeting-management.module').then(m => m.MeetingManagementModule)
             },
+            // {
+            //     path: 'notification-management',
+            //     loadChildren: () => import('./components/notification-management/notification-management.module').then(m => m.NotificationManagementModule)
+            // },
+            // {
+            //     path: 'meeting-archives-management',
+            //     loadChildren: () => import('./components/meeting-management-archives/meeting-management.module').then(m => m.MeetingManagementModule)
+            // },
+            // {
+            //     path: 'archives',
+            //     loadChildren: () => import('./components/archives/archives.module').then(m => m.ArchivesModule)
+            // },
             {
-                path: 'report', loadChildren: () => import('./components/report/report.module').then(mod => mod.ReportModule),
-                canActivate: [GuardService],
-                data: { roles: [Role.SUPER_ADMIN, Role.ADMIN] }
+                path: 'annual-report',
+                loadChildren: () => import('./components/annual-report/annual-report.module').then(m => m.AnnualReportModule)
             },
-            {
-                path: 'manage-point', loadChildren: () => import('./components/manage-point/manage-point.module').then(mod => mod.ManagePointModule),
-                canActivate: [GuardService],
-                data: { roles: [Role.SUPER_ADMIN, Role.ADMIN] }
-            },
-            {
-                path: 'setup', loadChildren: () => import('./components/setup/setup.module').then(mod => mod.SetupModule),
-                canActivate: [GuardService],
-                data: { roles: [Role.SUPER_ADMIN] }
-            },
-            {
-                path: 'dashboard', loadChildren: () => import('./components/dashboard/dashboard.module').then(mod => mod.DashboardModule),
-                canActivate: [GuardService],
-                data: { roles: [Role.SUPER_ADMIN, Role.ADMIN] }
-            },
-            {
-                path: 'employee', loadChildren: () => import('./components/employee/employee.module').then(mod => mod.EmployeeModule),
-                canActivate: [GuardService],
-                data: { roles: [Role.SUPER_ADMIN, Role.ADMIN] }
-            },
-            {
-                path: 'campaign', loadChildren: () => import('./components/campaign/campaign.module').then(mod => mod.CampaignModule),
-                canActivate: [GuardService],
-                data: { roles: [Role.SUPER_ADMIN, Role.ADMIN, Role.CONTENT_ADMIN, Role.VIEWER] }
-            },
+            // {
+            //     path: 'company-document',
+            //     loadChildren: () => import('./components/company-document/company-document.module').then(m => m.CompanyDocumentModule)
+            // },
+            // {
+            //     path: 'meeting-setting',
+            //     loadChildren: () => import('./components/meeting-setting/meeting-setting.module').then(m => m.MeetingSettingModule)
+            // },
         ]
     },
     {
         path: 'auth',
-        canActivate: [GuardLoginService],
         loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
     },
     {
-        path: 'public',
-        loadChildren: () => import('./components/public-page/public-page.module').then(m => m.PublicPageModule)
+        path: 'pdf-viewer', loadChildren: () => import('./components-shared/my-pdf-viewer/my-pdf-viewer.module').then(mod => mod.MyPdfViewerModule),
     },
-    { path: 'invalid-permission', component: InvalidPermissionComponent },
-    { path: '**', component: PageNotFoundComponent }
+    { path: '**', redirectTo: '/auth/login' }
 ];
 
 @NgModule({

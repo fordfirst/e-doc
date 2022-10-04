@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     // service url backend
-    serviceUrl: 'http://68.183.191.126:8445/cphr/',
+    serviceUrl: 'http://68.183.191.126:8443/emeetingClient/',
     // serviceUrl: 'http://68.183.191.126:8446/cphr/', /* PHASE2 */
 
     // prefixUrl: null, /* Dev With Local */

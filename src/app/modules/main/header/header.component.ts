@@ -1,4 +1,3 @@
-import { AuthService } from '@/aurhService';
 import { AppState } from '@/store/state';
 import { ToggleControlSidebar, ToggleSidebarMenu } from '@/store/ui/actions';
 import { UiState } from '@/store/ui/state';
@@ -20,13 +19,10 @@ export class HeaderComponent implements OnInit {
     public searchForm: FormGroup;
 
     dataRouteNavbar = [];
-    username: string;
-    code: string;
 
     constructor(
         private appService: AppService,
         private store: Store<AppState>,
-        private authService: AuthService
     ) { }
 
     ngOnInit() {
@@ -37,8 +33,6 @@ export class HeaderComponent implements OnInit {
         this.searchForm = new FormGroup({
             search: new FormControl(null)
         });
-        this.username = this.authService.getUsername();
-        this.code = this.authService.getCode();
     }
 
     ngAfterContentChecked() {
@@ -58,6 +52,6 @@ export class HeaderComponent implements OnInit {
     }
 
     redirectPageHeader(url) {
-        location.replace(this.authService.getFrontendUrl(url));
+        // location.replace(this.authService.getFrontendUrl(url));
     }
 }

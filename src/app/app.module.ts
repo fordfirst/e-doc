@@ -23,7 +23,6 @@ import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/auth/reducer';
 import { uiReducer } from './store/ui/reducer';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpErrorInterceptor } from './http-error.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 
 registerLocaleData(localeEn, 'en-EN');
@@ -53,13 +52,7 @@ registerLocaleData(localeEn, 'en-EN');
         ToastrModule.forRoot({ timeOut: 2000, positionClass: 'toast-top-right', }),
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpErrorInterceptor,
-            multi: true
-        }
-    ],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

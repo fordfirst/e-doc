@@ -1,8 +1,9 @@
 <!-- Brand Logo -->
 <!-- [routerLink]="['/']" -->
 <a class="brand-link logo-switch" style="border-bottom:0px;">
-    <img src="assets/img/CP-Group-logo 1.svg" alt="Logo" class="brand-image" style="opacity: .8" />
-    <span class="brand-text font-weight-light"><small>CP L.O.V.E.</small></span>
+    <!-- <img src="assets/img/CP-Group-logo 1.svg" alt="Logo" class="brand-image" style="opacity: .8" /> -->
+    <img src="assets/img/mainlogo.jpg" alt="Logo" class="brand-image" style="opacity: .8;width: 29px;height: auto;" />
+    <h6 class="brand-text font-weight-light d-inline">E-Meeting</h6>
 </a>
 
 <!-- Sidebar -->
@@ -10,46 +11,16 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
-                <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
-                    <i class="nav-icon far fa-chart-bar mr-2"></i>
-                    <p> Dashboard </p>
+            <li class="nav-item">
+                <a routerLink="/meeting-management" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-file-alt mr-2"></i>
+                    <p> Meeting Management </p>
                 </a>
             </li>
-            <li *ngIf="[1,2,3,4].indexOf(authService.getRole())!== -1" class="nav-item">
-                <a routerLink="/point-deal" routerLinkActive="active" class="nav-link">
-                    <i class="nav-icon far fa-gem mr-2"></i>
-                    <p> คะแนนและดีล </p>
-                </a>
-            </li>
-            <li *ngIf="[1,2,3,4].indexOf(authService.getRole())!== -1" class="nav-item">
-                <a routerLink="/campaign" routerLinkActive="active" class="nav-link">
-                    <i class="nav-icon fas fa-fire-alt mr-2"></i>
-                    <p> แคมเปญ </p>
-                </a>
-            </li>
-            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
-                <a routerLink="/report" routerLinkActive="active" class="nav-link">
-                    <i class="nav-icon far fa-file-alt mr-2"></i>
-                    <p> รายงาน </p>
-                </a>
-            </li>
-            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
-                <a routerLink="/manage-point" routerLinkActive="active" class="nav-link">
-                    <i class="nav-icon fab fa-product-hunt mr-2"></i>
-                    <p> อัพโหลดคะแนน </p>
-                </a>
-            </li>
-            <li *ngIf="[1,2].indexOf(authService.getRole())!== -1" class="nav-item">
-                <a routerLink="/employee" routerLinkActive="active" class="nav-link">
-                    <i class="nav-icon fas fa-address-card mr-2"></i>
-                    <p> ข้อมูลพนักงาน </p>
-                </a>
-            </li>
-            <li *ngIf="[1].indexOf(authService.getRole())!== -1" class="nav-item">
-                <a routerLink="/setup" routerLinkActive="active" class="nav-link">
-                    <i class="nav-icon fas fa-cog mr-2"></i>
-                    <p> ตั้งค่า </p>
+            <li class="nav-item">
+                <a routerLink="/annual-report" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line mr-2"></i>
+                    <p> Annual Report </p>
                 </a>
             </li>
             <li class="nav-item">
@@ -58,6 +29,38 @@
                     <p>ออกจากระบบ</p>
                 </a>
             </li>
+            <!-- <li class="nav-item">
+                <a routerLink="/campaign" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-fire-alt mr-2"></i>
+                    <p> Notification </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/campaign" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-fire-alt mr-2"></i>
+                    <p> Meeting Archives </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/campaign" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-fire-alt mr-2"></i>
+                    <p> Archives </p>
+                </a>
+            </li> -->
+
+            <!-- <li class="nav-item">
+                <a routerLink="/campaign" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-fire-alt mr-2"></i>
+                    <p> Company Document </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/campaign" routerLinkActive="active" class="nav-link">
+                    <i class="nav-icon fas fa-fire-alt mr-2"></i>
+                    <p> Setting </p>
+                </a>
+            </li> -->
+
         </ul>
     </nav>
     <!-- /.sidebar-menu -->
